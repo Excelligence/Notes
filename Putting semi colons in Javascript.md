@@ -1,21 +1,25 @@
 ### Putting semi colons in Javascript
 
-source:link:https://www.youtube.com/watch?v=gsfbh17Ax9I
+The semicolon in JavaScript is used to separate statements, but it can be omitted if the statement is followed by a line break (or there’s only *one* statement in a `{`block`}`)
 
-+ semi colons are optional in js
-+ Team themselves decide on the best practices there are no central authority.
-+ Uniformity for team -they may decide on having semi colons
-+ When switching between SQL and JS it is less jarring when you use semi colons
+They are optional
+
+Javascript will automatically insert semi colons for you using ASI(automatic semi colon insertion)
+
+Reasons for using semi colons
+
++ They are required when two statements are on same line to separate them.
++ If your team is using it, then you can use it for uniformity.
 
 
 
-Invalid reason for using semicolon
+Invalid reason for using semi colon
 
-​	It will protect from errors related to automatic semi colon insertion. This is wrong.
++ Thinking that it will protect you from ASI errors
 
+```js
 Example of one of the errors caused by automatic semi colon insertion
 
-```javascript
 function returnA () {
 return 4
 }
@@ -38,56 +42,43 @@ returnC(),)
 
 Adding semi colons will not help you in the above error. The ASI will insert a semi colon after the return statement.
 
-Adding semi colons will save you on lines starting with [ and (
+### Errors causes by not using semi colons
 
-If you put semi colons in front of lines starting with '[' and '(' you will be OK.
+When Looping through an array
 
----
+```js
+//This will give an error
+[1,2,3].forEach
+```
 
-SOURCE:link:https://www.youtube.com/watch?v=gsfbh17Ax9I
+It can be solved by inserting a semi colon at the beginning 
 
-Some solutions for issues with semi colons
+```js
+//Assign array to a variable and use forEach
+const arr=[1,2,3]
+arr.forEach
 
-+ Use semicolons before ( and [ on the beginning of line
+```
 
-+ Assign array to a variable to avoid this error
+When using an IIFE
 
-  ```javascript
-  //This will give an error
-  [1,2,3].forEach
-  //Assign array to a variable and use forEach
-  const arr=[1,2,3]
-  arr.forEach
-  
-  ```
+```JS
+(function(){
+   //function body 
+}());
+//This will produce error.
 
-+ For an IIFE use a  semi colon before.
+// Can be resolved using a semi colon
 
-  ```javascript
-  ;(function(){
-      
-  }());
-  //or give function proper name and call it.
-  ```
+;(function(){
+   //function body 
+}());
 
+```
 
+### Situations to avoid semi colons
 
-
----
-
-
-
-[Source]: https://news.codecademy.com/your-guide-to-semicolons-in-javascript/
-
-Situations when semi colon are required
-
-The semicolon in JavaScript is used to separate statements, but it can be omitted if the statement is followed by a line break (or there’s only *one* statement in a `{`block`}`)
-
-when two statements are on same line
-
-Avoid semi colons in these situations
-
-+ After a closing curly bracket except for an assignment statement.
+After a closing curly bracket except for an assignment statement.
 
 ```js
 // NO semicolons after }:
@@ -102,21 +93,29 @@ do {...} while (...);
 function (arg) { /*do this*/ } // NO semicolon after }
 ```
 
+After the round bracket of an if, for, while or switch statement
+
+```js
+if (0 === 1); { alert("hi") }
+
+// equivalent to:
+
+if (0 === 1) /*do nothing*/ ;
+alert ("hi");
+```
+
+#### The less confusing path
+
++ Assign your arrays to variable and loop through them.
++ Use a semi colon before IIFE.
++ Don't use semi colons other than that.
 
 
-+ After the round bracket of an if, for, while or switch statement
-
-  ```js
-  if (0 === 1); { alert("hi") }
-  
-  // equivalent to:
-  
-  if (0 === 1) /*do nothing*/ ;
-  alert ("hi");
-  ```
-
-  ---
 
 
 
+source:link:https://www.youtube.com/watch?v=gsfbh17Ax9I
 
+SOURCE:link:https://www.youtube.com/watch?v=gsfbh17Ax9I
+
+[Source]: https://news.codecademy.com/your-guide-to-semicolons-in-javascript/
