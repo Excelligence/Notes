@@ -9,5 +9,6 @@ You will get output with a id
 + Now ssh into the remote server
 
 + Command to test the key `ssh -T git@github.com`
-+ git remote set-url origin git@github.com:username/your-repository.git
++ Set origin url using `git remote set-url origin git@github.com:username/your-repository.git`
+
 
